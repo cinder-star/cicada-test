@@ -6,7 +6,7 @@ const build = new Job({
     steps: [
         {
             name: "Install Dependencies",
-            run: "yarn install",
+            run: "yarn",
             cacheDirectories: ["node_modules"],
         },
         {
@@ -17,12 +17,9 @@ const build = new Job({
     ],
 });
 
-export default new Pipeline(
-  [build],
-  {
+export default new Pipeline([build], {
     on: {
-      pullRequest: ["main"],
-      push: ["main"],
+        pullRequest: ["main"],
+        push: ["main"],
     },
-  },
-);
+});
